@@ -1,0 +1,71 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:mgwt="urn:import:com.googlecode.mgwt.ui.client.widget"
+	xmlns:m="urn:import:com.google.gwt.maps.client" xmlns:w="urn:import:com.pmerienne.geonotification.client.widget"
+	xmlns:b="urn:import:com.googlecode.mgwt.ui.client.widget.buttonbar" xmlns:t="urn:import:com.googlecode.mgwt.ui.client.widget.tabbar" xmlns:tabbar="urn:import:com.pmerienne.geonotification.client.widget.tabbar">
+
+	<ui:style>
+		.magic {
+			display: \-webkit-box;
+			\-webkit-box-flex: 1;
+			\-webkit-box-orient: vertical;
+			width: 100%;
+			height: 100%;
+		}
+	</ui:style>
+
+
+	<mgwt:LayoutPanel>
+		<t:TabPanel width="100%" height="100%" ui:field="tabPanel">
+		 	<t:tabs>
+		 		<t:Tab>
+		 			<t:button>
+		 				<tabbar:MapTabBarButton />
+		 			</t:button>
+		 			<t:widget>
+						<w:NotificationMap ui:field="map" />
+		 			</t:widget>
+		 		</t:Tab>
+		 	</t:tabs>
+		 	<t:tabs>
+		 		<t:Tab>
+		 			<t:button>
+		 				<tabbar:LastNotificationsTabBarButton />
+		 			</t:button>
+		 			<t:widget>
+		 				<mgwt:ScrollPanel addStyleNames="{style.magic}" scrollingEnabledX="false">
+							<w:NotificationList ui:field="notificationList" round="true" />
+						</mgwt:ScrollPanel>
+		 			</t:widget>
+		 		</t:Tab>
+		 	</t:tabs>
+		 	<t:tabs>
+		 		<t:Tab>
+		 			<t:button>
+		 				<tabbar:NotificationTabBatButton />
+		 			</t:button>
+		 			<t:widget>
+		 				<mgwt:ScrollPanel addStyleNames="{style.magic}" scrollingEnabledX="false">
+			 				<g:HTMLPanel>
+								<w:NotificationEditor ui:field="notificationEditor" />
+								<w:NotificationDetail ui:field="notificationDetail" visible="false" />
+			 				</g:HTMLPanel>
+						</mgwt:ScrollPanel>
+		 			</t:widget>
+		 		</t:Tab>
+		 	</t:tabs>
+		 	<t:tabs>
+		 		<t:Tab>
+		 			<t:button>
+		 				<tabbar:SettingsTabBarButton />
+		 			</t:button>
+		 			<t:widget>
+		 				<mgwt:ScrollPanel addStyleNames="{style.magic}" scrollingEnabledX="false">
+		 					<w:NotificationTypeCheckList ui:field="notificationTypeCheckList" round="true" />
+		 				</mgwt:ScrollPanel>
+		 			</t:widget>
+		 		</t:Tab>
+		 	</t:tabs>
+		 </t:TabPanel>
+	</mgwt:LayoutPanel>
+</ui:UiBinder> 

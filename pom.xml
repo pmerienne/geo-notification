@@ -1,0 +1,272 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.pmrienne</groupId>
+	<artifactId>geo-notification</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>Geo Notification</name>
+
+	<properties>
+		<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
+		<!-- Dependencies versions -->
+		<gwt.version>2.4.0</gwt.version>
+		<mgwt.version>1.0.2</mgwt.version>
+		<spring.version>3.1.1.RELEASE</spring.version>
+		<org.aspectj.version>1.6.10</org.aspectj.version>
+		<gwteventservice.version>1.2.0-RC1</gwteventservice.version>
+		<log4j.version>1.2.16</log4j.version>
+		<slf4j-api.version>1.5.10</slf4j-api.version>
+		<slf4j-log4j12.version>1.5.10</slf4j-log4j12.version>
+		<!-- Cloud foundry -->
+		<org.cloudfoundry.version>0.8.0</org.cloudfoundry.version>
+	</properties>
+
+	<repositories>
+		<!-- Repository central -->
+		<repository>
+			<id>repo1.maven.org</id>
+			<name>Default</name>
+			<url>http://repo1.maven.org/maven2</url>
+			<layout>default</layout>
+		</repository>
+		<!-- For developing against latest Spring milestones -->
+		<repository>
+			<id>spring-maven-release</id>
+			<name>Spring Maven Release Repository</name>
+			<url>http://maven.springframework.org/release</url>
+		</repository>
+		<repository>
+			<id>spring-maven-milestone</id>
+			<name>Spring Maven Milestone Repository</name>
+			<url>http://maven.springframework.org/milestone</url>
+		</repository>
+		<!-- For GWTEventService -->
+		<repository>
+			<id>gwteventservice</id>
+			<url>http://gwteventservice.googlecode.com/svn/maven/repository</url>
+		</repository>
+	</repositories>
+
+	<build>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+		<!-- Generate compiled stuff in the folder used for developing mode -->
+		<outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>2.8</version>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>false</downloadJavadocs>
+					<buildOutputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes
+					</buildOutputDirectory>
+					<projectnatures>
+						<projectnature>org.eclipse.jdt.core.javanature</projectnature>
+						<projectnature>com.google.gdt.eclipse.core.webAppNature
+						</projectnature>
+						<nature>com.google.gwt.eclipse.core.gwtNature</nature>
+					</projectnatures>
+					<buildcommands>
+						<buildcommand>org.eclipse.jdt.core.javabuilder</buildcommand>
+						<buildcommand>com.google.gdt.eclipse.core.webAppProjectValidator
+						</buildcommand>
+						<buildcommand>com.google.appengine.eclipse.core.projectValidator
+						</buildcommand>
+						<buildcommand>com.google.gwt.eclipse.core.gwtProjectValidator
+						</buildcommand>
+					</buildcommands>
+					<classpathContainers>
+						<classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER
+						</classpathContainer>
+						<classpathContainer>com.google.gwt.eclipse.core.GWT_CONTAINER
+						</classpathContainer>
+					</classpathContainers>
+					<excludes>
+						<exclude>com.google.gwt:gwt-servlet</exclude>
+						<exclude>com.google.gwt:gwt-user</exclude>
+						<exclude>com.google.gwt:gwt-dev</exclude>
+						<exclude>javax.validation:validation-api</exclude>
+					</excludes>
+					<linkedResources>
+						<linkedResource>
+							<name>war</name>
+							<type>2</type>
+							<location>target/${project.artifactId}-${project.version}</location>
+						</linkedResource>
+					</linkedResources>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>gwt-maven-plugin</artifactId>
+				<version>${gwt.version}</version>
+				<executions>
+					<execution>
+						<configuration>
+							<module>com.pmerienne.geonotification.GeoNotification</module>
+							<extraJvmArgs>-Xmx1024m -Xms1024m -XX:-UseGCOverheadLimit</extraJvmArgs>
+						</configuration>
+						<goals>
+							<goal>compile</goal>
+							<goal>test</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<!-- mgwt dependency -->
+		<dependency>
+			<groupId>com.googlecode.mgwt</groupId>
+			<artifactId>mgwt</artifactId>
+			<version>${mgwt.version}</version>
+		</dependency>
+		<!-- GWT dependencies -->
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-servlet</artifactId>
+			<version>${gwt.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+			<version>${gwt.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-dev</artifactId>
+			<version>${gwt.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.0.0.GA</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>1.0.0.GA</version>
+			<classifier>sources</classifier>
+		</dependency>
+		<!-- GWT MAP -->
+		<dependency>
+			<groupId>com.google.gwt.google-apis</groupId>
+			<artifactId>gwt-maps</artifactId>
+			<version>1.0.4.1</version>
+		</dependency>
+		<!-- GWT Event Service -->
+		<dependency>
+			<groupId>com.google.code.gwteventservice</groupId>
+			<artifactId>gwteventservice</artifactId>
+			<version>${gwteventservice.version}</version>
+		</dependency>
+		<!-- JSON serializer (for local storage) -->
+		<dependency>
+			<groupId>com.kfuntak.gwt.json</groupId>
+			<artifactId>gwtprojsonserializer</artifactId>
+			<version>1.0.5-SNAPSHOT</version>
+		</dependency>
+		<!-- Conteneur : Spring Framework -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+			<exclusions>
+				<!-- Exclude Commons Logging in favor of SLF4j -->
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+			<version>1.0.1.RELEASE</version>
+		</dependency>
+		<!-- AspectJ -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${org.aspectj.version}</version>
+		</dependency>
+		<!-- Log -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>${log4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j-api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j-log4j12.version}</version>
+		</dependency>
+		<!-- CloudFoundry -->
+		<dependency>
+			<groupId>org.cloudfoundry</groupId>
+			<artifactId>cloudfoundry-runtime</artifactId>
+			<version>${org.cloudfoundry.version}</version>
+		</dependency>
+		<!-- Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.7</version>
+			<type>jar</type>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<version>3.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>

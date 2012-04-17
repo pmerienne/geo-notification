@@ -1,0 +1,22 @@
+@external body, *;
+* {
+	margin: 0px;
+/* Avoid weird ul */
+/* 	padding: 0px; */
+	font-family: Helvetica, sans-serif;
+}
+
+@if user.agent safari {
+	* {
+		\-webkit-user-select: none;
+		\-webkit-text-size-adjust: none;
+		\-webkit-touch-callout: none;
+		\-webkit-text-size-adjust: none;
+	}
+}
+
+@if user.agent gecko1_8 {
+	* {
+		\-moz-user-select: none;
+	}
+}

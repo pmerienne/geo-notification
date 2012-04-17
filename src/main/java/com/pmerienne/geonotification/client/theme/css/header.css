@@ -1,0 +1,348 @@
+@if mgwt.css pretty {
+	@external mgwt-HeaderPanel, mgwt-HeaderPanel-left, mgwt-HeaderPanel-right, mgwt-HeaderPanel-center, mgwt-DropDownMenu;
+	@external mgwt-HeaderButton, mgwt-HeaderButton-active, mgwt-HeaderButton-back, mgwt-HeaderButton-forward, mgwt-HeaderButton-round, mgwt-HeaderButton-text, mgwt-HeaderButton-border-content, mgwt-HeaderButton-border-container;
+	@external mgwt-DropDownMenu, mgwt-DropDownMenu-content,  mgwt-DropDownMenu-arrow;
+}
+
+.mgwt-HeaderPanel {
+	position: relative;
+}
+
+.mgwt-HeaderPanel-left {
+	position: absolute;
+}
+
+.mgwt-HeaderPanel-right {
+	position: absolute;
+}
+
+.mgwt-HeaderPanel-center {
+	position: absolute;
+	left: 50%;
+}
+
+.mgwt-HeaderButton {
+	z-index: 1;
+	margin: 6px 0 0 12px;
+	height: 26px;
+	\-webkit-appearance: none;
+	border: 0px solid black;
+	background-color: transparent;
+	box-sizing: content-box;
+}
+
+@if user.agent safari {
+	.mgwt-HeaderButton {
+		\-webkit-appearance: none;
+	}
+}
+
+@if user.agent gecko1_8 {
+	.mgwt-HeaderButton {
+		\-moz-appearance: none;
+	}
+}
+
+.mgwt-HeaderButton-text {
+	position: relative;
+	z-index: 2;
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	margin: 0;
+	padding: 5px;
+	font-size: 12px;
+	text-align: center;
+	min-width: 40px;
+	max-width: 60px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	height: 14px;
+}
+
+@if user.agent safari {
+	.mgwt-HeaderButton-text {
+		\-webkit-border-radius: 4px;
+		\-webkit-background-origin: border-box;
+	}
+}
+
+@if user.agent gecko1_8 {
+	.mgwt-HeaderButton-text {
+		\-moz-border-radius: 4px;
+		\-moz-background-origin: border-box;
+	}
+}
+
+.mgwt-HeaderButton-back .mgwt-HeaderButton-text {
+	border-left: none;
+}
+
+.mgwt-HeaderButton-back .mgwt-HeaderButton-border-container {
+	position: absolute;
+	z-index: 1;
+	top: 4.5px;
+	left: -7.5px;
+}
+
+@if user.agent safari {
+	.mgwt-HeaderButton-back .mgwt-HeaderButton-border-container {
+		\-webkit-transform: rotate(54deg);
+	}
+}
+
+@if user.agent gecko1_8 {
+	.mgwt-HeaderButton-back .mgwt-HeaderButton-border-container {
+		top: 4px;
+		left: -7px;
+		\-moz-transform: rotate(52deg);
+	}
+}
+
+
+
+.mgwt-HeaderButton-back .mgwt-HeaderButton-border-content {
+	\-webkit-transform: skew(15deg);
+	display: block;
+	width: 17px;
+	height: 17px;
+	\-webkit-border-radius: 2px;
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	border-right: none;
+	border-top: none;
+	\-webkit-border-radius: 4px;
+}
+
+@if user.agent safari {
+	.mgwt-HeaderButton-back .mgwt-HeaderButton-border-content {
+		\-webkit-transform: skew(15deg);
+		\-webkit-border-radius: 2px;
+		\-webkit-border-radius: 4px;
+	}
+}
+
+@if user.agent gecko1_8 {
+	.mgwt-HeaderButton-back .mgwt-HeaderButton-border-content {
+		\-moz-transform: skew(15deg);
+		\-moz-border-radius: 2px;
+		\-moz-border-radius: 4px;
+	}
+}
+
+.mgwt-HeaderButton-forward .mgwt-HeaderButton-border-container {
+	position: absolute;
+	z-index: 1;
+	top: 4px;
+	right: -7px;
+	\-webkit-transform: rotate(51deg);
+}
+
+.mgwt-HeaderButton-round {
+	
+}
+
+/**
+
+	DROP DOWN MENU
+	only IOS right now
+*/
+.mgwt-DropDownMenu {
+	width: 300px;
+	\-webkit-padding-start: 0px;
+	\-webkit-border-radius: 10px;
+	\-webkit-box-shadow: 2px 2px 10px #000000;
+	background-color: #131b2f;
+	border: solid 2px #4f4f4f;
+	margin: 0px;
+	top: 49px;
+	left: 10px;
+	bottom: 20px;
+	position: absolute;
+}
+
+.mgwt-DropDownMenu-content {
+	display: -webkit-box;
+	\-webkit-box-orient: vertical;
+	width: 100%;
+	height: 100%;
+}
+
+.mgwt-DropDownMenu-arrow {
+	background-color: #ffffff;
+	margin: 0px 5px 5px 5px !important;
+	\-webkit-border-radius: 5px;
+	position: absolute;
+	top: -15px;
+	left: 3px;
+	height: 30px !important;
+	width: 30px;
+	border: solid 2px #4f4f4f;
+	border-bottom: none;
+	border-right: none;
+	background-color: #7d828c;
+	\-webkit-transform: rotate(45deg);
+	\-webkit-mask-image: literal('-webkit-gradient(linear, left top, right bottom, from(#000000), color-stop(0.5, #000000), color-stop(0.5, transparent), to(transparent) )');
+}
+
+.mgwt-DropDownMenu .mgwt-HeaderPanel {
+	padding: 0px 10px;
+	height: 40px;
+	\-webkit-border-top-left-radius: 8px;
+	\-webkit-border-top-right-radius: 8px;
+	background-image: literal('-webkit-gradient(linear, 0% 0%, 0% 100%, from(#7e838d), color-stop(0.5, #303648), color-stop(0.5, #121b2e), to(#131b2f) )');
+	position: relative;
+	border-bottom: 0;
+}
+
+.mgwt-DropDownMenu .mgwt-HeaderPanel .mgwt-HeaderPanel-center {
+	color: white;
+}
+
+.mgwt-DropDownMenu .mgwt-HeaderButton-back .mgwt-HeaderButton-border-content {
+	background-image: literal('-webkit-gradient(linear, left top, right bottom, from(#7d828c),color-stop(0.5, #303749), color-stop(0.5, #121a2e), to(#121a2e))');
+}
+
+.mgwt-DropDownMenu .mgwt-HeaderButton {
+	color: #ffffff;
+	text-decoration: none;
+	display: inline-block;
+	/*padding: 4px 10px;*/
+	\-webkit-border-radius: 5px;
+	margin-top: 6px;
+	border: solid 1px rgba(79, 79, 79, 0.75);
+	\-webkit-box-shadow: none;
+}
+
+/*-webkit-gradient(linear, left top, left bottom, from(#5C8C35), to(#466E26), color-stop(0.5, #64A32F), color-stop(0.51, #5D9E28) ) */
+/*-webkit-gradient(linear, left top, left bottom, from(#5C8C35), to(#466E26), color-stop(0.5, #598A32), color-stop(0.51, #578A2F) ) */
+
+.mgwt-DropDownMenu .mgwt-HeaderButton .mgwt-HeaderButton-text {
+	background-image: literal('-webkit-gradient(linear, 0% 0%, 0% 100%, from(#7d828c),color-stop(0.5, #303749), color-stop(0.5, #121a2e), to(#121a2e))');
+}
+
+.mgwt-DropDownMenu .mgwt-HeaderButton-active .mgwt-HeaderButton-text {
+	background-image: literal('-webkit-gradient(linear, 0% 0%, 0% 100%, from(#6B7364), color-stop(0.5, #1F2E13), color-stop(0.5, #081200), to(#00000f) )');
+}
+
+.mgwt-DropDownMenu .mgwt-HeaderButton-active .mgwt-HeaderButton-border-content {
+	background-image: literal('-webkit-gradient(linear, left top, right bottom, from(#6B7364),color-stop(0.5, #1F2E13), color-stop(0.5, #00000e), to(#00000e))');
+}
+
+/* other browsers */
+@if user.agent ie6 ie8 ie9 gecko opera {
+	.mgwt-HeaderPanel-right {
+		
+	}
+	.mgwt-HeaderPanel {
+		
+	}
+	.mgwt-HeaderButton-round {
+		
+	}
+	.mgwt-HeaderButton {
+		
+	}
+	.mgwt-HeaderButton-active {
+		
+	}
+	.mgwt-DropDownMenu {
+		
+	}
+	.mgwt-HeaderPanel-center {
+		
+	}
+	.mgwt-HeaderButton-forward {
+		
+	}
+	.mgwt-DropDownMenu-content {
+		
+	}
+	.mgwt-HeaderPanel-left {
+		
+	}
+	.mgwt-DropDownMenu-arrow {
+		
+	}
+	.mgwt-HeaderButton-back {
+		
+	}
+}
+.mgwt-HeaderPanel {
+	height: 50px;
+	background-color: black;
+	background-image: none;
+	border-bottom: 2px solid rgb(82, 163, 196);
+}
+
+.mgwt-HeaderPanel-left {
+	top: 6px;
+	left: 6px;
+}
+
+.mgwt-HeaderPanel-right {
+	top: 6px;
+	right: 6px;
+}
+
+.mgwt-HeaderPanel-center {
+	left: 50%;
+	height: 31px;
+	width: 240px;
+	opacity: 1;
+	margin-left: -110px;
+	margin-top: 12px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: center;
+	font-size: 24px;
+	color: white;
+}
+
+.mgwt-HeaderButton-text {
+	color: white;
+	border: 2px solid rgb(82, 163, 196);
+}
+
+@if user.agent safari {
+	.mgwt-HeaderButton-active .mgwt-HeaderButton-text {
+		background: literal('-webkit-gradient(linear, left top, left bottom, from(rgb(42, 123, 156)), to(rgb(32, 113, 146)) )');
+	}
+}
+
+@if user.agent gecko1_8 {
+	.mgwt-HeaderButton-active .mgwt-HeaderButton-text {
+		background: literal('-moz-linear-gradient(top, rgb(42, 123, 156), rgb(32, 113, 146))');
+	}
+}
+
+.mgwt-HeaderButton-back .mgwt-HeaderButton-border-content {
+	background-image: none;
+	color: white;
+	border: 2px solid rgb(82, 163, 196);
+	border-right: none;
+	border-top: none;
+}
+
+@if user.agent safari {
+	.mgwt-HeaderButton-back .mgwt-HeaderButton-border-content {
+		\-webkit-box-shadow: none;
+	}
+}
+
+@if user.agent gecko1_8 {
+	.mgwt-HeaderButton-back .mgwt-HeaderButton-border-content {
+		\-moz-box-shadow: none;
+	}
+}
+
+@if user.agent safari {
+	.mgwt-HeaderButton-active .mgwt-HeaderButton-border-content {
+		background: literal('-webkit-gradient(linear, left top, right bottom, from(rgb(42, 123, 156)), to(rgb(32, 113, 146)) )');
+	}
+}
+
+@if user.agent gecko1_8 {
+	.mgwt-HeaderButton-active .mgwt-HeaderButton-border-content {
+		background: literal('-moz-linear-gradient(top, rgb(42, 123, 156), rgb(32, 113, 146))');
+	}
+}

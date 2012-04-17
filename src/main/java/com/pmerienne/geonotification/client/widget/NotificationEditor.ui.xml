@@ -1,0 +1,31 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui" xmlns:mgwt="urn:import:com.googlecode.mgwt.ui.client.widget"
+	xmlns:geonotification="urn:import:com.pmerienne.geonotification.client.widget">
+	<ui:style>
+		.spaced {
+			padding: 10px;
+		}
+		
+		.centered {
+			margin-right: auto;
+			margin-left: auto;
+		}
+	</ui:style>
+
+	<g:HTMLPanel addStyleNames="{style.spaced}">
+		<h2>Quoi?</h2>
+		<mgwt:WidgetList round="true">
+			<geonotification:NotificationTypeListBox ui:field="notificationType" />
+			<mgwt:MTextBox ui:field="name" placeHolder="Name" />
+			<mgwt:MTextArea ui:field="description" placeHolder="Description" />
+		</mgwt:WidgetList>
+
+		<h2>Où?</h2>
+		<g:HTMLPanel ui:field="mapContainer" addStyleNames="{style.centered}" />
+
+		<hr />
+		<mgwt:Button ui:field="save" text="Publier" round="true"
+			confirm="true" />
+	</g:HTMLPanel>
+</ui:UiBinder>
